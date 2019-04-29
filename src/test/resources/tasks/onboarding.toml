@@ -1,4 +1,3 @@
-
 [[step]]
 type = "jira"
 description = "A step that creates a jira issue"
@@ -26,5 +25,6 @@ description = "A step that creates a mail"
 
 [[step]]
 type = "free"
+desc = "free step with documentation added"
     [step.free]
     description = "dont forget to do the dishes"
