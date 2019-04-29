@@ -1,0 +1,8 @@
+[jira]
+server = "actualServer"
+pass = "actualPass"
+
+[mailer]
+mailserver = "127.0.1"
+user = "test"
+pass = "test"

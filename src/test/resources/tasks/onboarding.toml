@@ -1,0 +1,30 @@
+
+[[step]]
+type = "jira"
+description = "A step that creates a jira issue"
+    [step.jira]
+    project = "testProject"
+    [[step.jira.field]]
+    fieldId = "custom-id"
+    content = "testor crestor"
+    [[step.jira.field]]
+    fieldId = "12345"
+    content = "pew pew"
+    [[step.jira.field]]
+    fieldId = "abc"
+    content = "ack ack"
+    [[step.jira.field]]
+    fieldId = "421"
+    content = "testor"
+
+[[step]]
+type = "mail"
+description = "A step that creates a mail"
+    [step.mail]
+    to = "test@test.com"
+    body = "this is a test"
+
+[[step]]
+type = "free"
+    [step.free]
+    description = "dont forget to do the dishes"
