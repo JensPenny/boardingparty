@@ -21,10 +21,11 @@ type = "mail"
 description = "A step that creates a mail"
     [step.mail]
     to = "test@test.com"
-    body = "this is a test"
+    subject="this is a subject"
+    body = "this is a body"
 
 [[step]]
 type = "free"
-desc = "free step with documentation added"
+description = "free step with documentation added"
     [step.free]
-    description = "dont forget to do the dishes"
+    content = "dont forget to do the dishes"
