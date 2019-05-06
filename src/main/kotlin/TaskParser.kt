@@ -16,18 +16,14 @@ class TaskParser {
         steps.forEach { step ->
             val type = step.getString("type")
             val desc = step.getString("description")
-            println("type $type - desc $desc")
 
             val actualStep = when (type) {
                 "jira" -> createJiraStep(desc, type, step.getTable(type))
                 "mail" -> createMailStep(desc, type, step.getTable(type))
                 "free" -> createFreeStep(desc, type, step.getTable(type))
-                else -> null
+                else -> null //todo add a logger
             }
             resultSteps.add(actualStep)
-
-            val table = step.getTable(type)
-            println(table.isEmpty)
         }
 
         return resultSteps.filterNotNull()

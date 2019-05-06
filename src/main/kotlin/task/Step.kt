@@ -34,9 +34,9 @@ class JiraStep(
 
 class MailStep(
     override val name: String, override val type: String,
-    private val to: String,
-    private val subject: String,
-    private val body: String
+    val to: String,
+    val subject: String,
+    val body: String
 ) : Step {
     override fun dictionaryKeys(): Collection<String> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -48,7 +48,9 @@ class MailStep(
 }
 
 class FreeStep(
-    override val name: String, override val type: String, private val content: String
+    override val name: String,
+    override val type: String,
+    val content: String
 ) : Step {
     override fun dictionaryKeys(): Collection<String> {
         return emptyList()
@@ -58,4 +60,7 @@ class FreeStep(
         println(content)
     }
 
+    override fun toString(): String {
+        return "FREE: $content"
+    }
 }
