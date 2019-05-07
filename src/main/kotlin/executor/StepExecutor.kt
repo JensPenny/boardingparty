@@ -1,5 +1,9 @@
 package executor
 
+import net.sargue.mailgun.Configuration
+import net.sargue.mailgun.Mail
+import net.sargue.mailgun.MailRequestCallback
+import net.sargue.mailgun.content.Body
 import task.FreeStep
 import task.JiraStep
 import task.MailStep
@@ -30,4 +34,18 @@ class DefaultStepExecutor(
 
 interface Task<in E>{
     fun doTask(step: E)
+}
+
+class GunMailTask (
+    private val mailConfiguration: Configuration
+): Task<MailStep> {
+    override fun doTask(step: MailStep) {
+        Mail.using(mailConfiguration)
+            .to(step.to)
+            .subject(step.subject)
+            .content(Body("", step.body))
+            .build()
+            .sendAsync()
+    }
+
 }
