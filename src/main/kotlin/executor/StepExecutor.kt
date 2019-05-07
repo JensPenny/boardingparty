@@ -13,29 +13,21 @@ interface StepExecutor {
     fun execute(step: Step)
 }
 
-class DefaultStepExecutor : StepExecutor {
-
-    private val jiraCreator = JiraCreator()
-    private val mailCreator = Mailer()
+class DefaultStepExecutor(
+    private val jiraTasker : Task<JiraStep>,
+    private val mailTasker : Task<MailStep>
+) : StepExecutor{
 
     override fun execute(step: Step) {
         when (step) {
-            is JiraStep -> jiraCreator.create(step)
-            is MailStep -> mailCreator.send(step)
+            is JiraStep -> jiraTasker.doTask(step)
+            is MailStep -> mailTasker.doTask(step)
             is FreeStep -> println(step.toString())
             else -> throw IllegalArgumentException("No executor found for step $step")
         }
     }
 }
 
-class JiraCreator {
-    fun create(step: JiraStep) {
-        println("creating jira in project ${step.project}")
-    }
-}
-
-class Mailer {
-    fun send(step: MailStep) {
-        println("sending mail ${step.subject} to ${step.to}")
-    }
+interface Task<in E>{
+    fun doTask(step: E)
 }
