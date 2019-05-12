@@ -3,6 +3,7 @@ server = "actualServer"
 pass = "actualPass"
 
 [mailer]
-mailserver = "127.0.1"
-user = "test"
-pass = "test"
+type = "mailgun"
+apikey = "key"
+domain = "domain"
+from = "mail"

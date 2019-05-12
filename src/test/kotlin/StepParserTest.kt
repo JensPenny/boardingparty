@@ -2,19 +2,20 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import task.JiraStep
+import task.StepParser
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class TaskParserTest {
+class StepParserTest {
     @Test
     fun parseTasks() {
-        val steps = TaskParser().parse("tasks/multiple_steps.toml")
+        val steps = StepParser().parse("tasks/multiple_steps.toml")
         assertFalse(steps.isEmpty())
         assertEquals(3, steps.size)
     }
 
     @Test
     fun parseAndCheckJira() {
-        val steps = TaskParser().parse("tasks/jiratask.toml")
+        val steps = StepParser().parse("tasks/jiratask.toml")
         assertFalse(steps.isEmpty())
         assertTrue(steps.first() is JiraStep)
         val jira = steps.first() as JiraStep

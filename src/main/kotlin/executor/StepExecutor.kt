@@ -2,7 +2,6 @@ package executor
 
 import net.sargue.mailgun.Configuration
 import net.sargue.mailgun.Mail
-import net.sargue.mailgun.MailRequestCallback
 import net.sargue.mailgun.content.Body
 import task.FreeStep
 import task.JiraStep
@@ -18,27 +17,27 @@ interface StepExecutor {
 }
 
 class DefaultStepExecutor(
-    private val jiraTasker : Task<JiraStep>,
-    private val mailTasker : Task<MailStep>
-) : StepExecutor{
+    private val jiraExecutor: Executor<JiraStep>,
+    private val mailExecutor: Executor<MailStep>
+) : StepExecutor {
 
     override fun execute(step: Step) {
         when (step) {
-            is JiraStep -> jiraTasker.doTask(step)
-            is MailStep -> mailTasker.doTask(step)
+            is JiraStep -> jiraExecutor.doTask(step)
+            is MailStep -> mailExecutor.doTask(step)
             is FreeStep -> println(step.toString())
             else -> throw IllegalArgumentException("No executor found for step $step")
         }
     }
 }
 
-interface Task<in E>{
+interface Executor<in E> {
     fun doTask(step: E)
 }
 
-class GunMailTask (
+class GunMailTask(
     private val mailConfiguration: Configuration
-): Task<MailStep> {
+) : Executor<MailStep> {
     override fun doTask(step: MailStep) {
         Mail.using(mailConfiguration)
             .to(step.to)

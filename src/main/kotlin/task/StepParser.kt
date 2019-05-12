@@ -1,10 +1,8 @@
-import com.moandjiezana.toml.Toml
-import task.FreeStep
-import task.JiraStep
-import task.MailStep
-import task.Step
+package task
 
-class TaskParser {
+import com.moandjiezana.toml.Toml
+
+class StepParser {
 
     fun parse(resource: String): Collection<Step> {
         val resultSteps = mutableListOf<Step?>()
