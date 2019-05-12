@@ -20,7 +20,7 @@ class StepParserTest {
         assertTrue(steps.first() is JiraStep)
         val jira = steps.first() as JiraStep
         assertEquals("A step that creates a jira issue", jira.name)
-        assertEquals("jira", jira.type)
+        assertEquals("jira", jira.stepType)
         assertEquals("testProject", jira.project)
 
         val parameters = jira.parameters

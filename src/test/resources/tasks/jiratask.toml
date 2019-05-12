@@ -1,8 +1,9 @@
 [[step]]
-type = "jira"
+stepType = "jira"
 description = "A step that creates a jira issue"
     [step.jira]
     project = "testProject"
+    issueType = "bug"
     [[step.jira.field]]
     fieldId = "custom-id"
     content = "$first test$ test test "

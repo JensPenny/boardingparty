@@ -30,21 +30,3 @@ class DefaultStepExecutor(
         }
     }
 }
-
-interface Executor<in E> {
-    fun doTask(step: E)
-}
-
-class GunMailTask(
-    private val mailConfiguration: Configuration
-) : Executor<MailStep> {
-    override fun doTask(step: MailStep) {
-        Mail.using(mailConfiguration)
-            .to(step.to)
-            .subject(step.subject)
-            .content(Body("", step.body))
-            .build()
-            .sendAsync()
-    }
-
-}

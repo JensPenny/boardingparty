@@ -2,7 +2,7 @@ package task
 
 interface Step {
     val name: String
-    val type: String
+    val stepType: String
     /**
      * Scans the step for internal dictionarykeys that need a resolution
      */
@@ -17,8 +17,9 @@ interface Step {
 
 class JiraStep(
     override val name: String,
-    override val type: String,
+    override val stepType: String,
     val project: String,
+    val jiraType: String,
     val parameters: List<Pair<String, String>>
 ) : Step {
     override fun dictionaryKeys(): Collection<String> {
@@ -33,7 +34,7 @@ class JiraStep(
 }
 
 class MailStep(
-    override val name: String, override val type: String,
+    override val name: String, override val stepType: String,
     val to: String,
     val subject: String,
     val body: String
@@ -49,7 +50,7 @@ class MailStep(
 
 class FreeStep(
     override val name: String,
-    override val type: String,
+    override val stepType: String,
     val content: String
 ) : Step {
     override fun dictionaryKeys(): Collection<String> {

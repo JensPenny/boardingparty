@@ -1,8 +1,9 @@
 [[step]]
-type = "jira"
+stepType = "jira"
 description = "A step that creates a jira issue"
     [step.jira]
     project = "testProject"
+    issueType = "bug"
     [[step.jira.field]]
     fieldId = "custom-id"
     content = "testor crestor"
@@ -17,7 +18,7 @@ description = "A step that creates a jira issue"
     content = "testor"
 
 [[step]]
-type = "mail"
+stepType = "mail"
 description = "A step that creates a mail"
     [step.mail]
     to = "test@test.com"
@@ -25,7 +26,7 @@ description = "A step that creates a mail"
     body = "this is a body"
 
 [[step]]
-type = "free"
+stepType = "free"
 description = "free step with documentation added"
     [step.free]
     content = "dont forget to do the dishes"

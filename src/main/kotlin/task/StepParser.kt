@@ -12,7 +12,7 @@ class StepParser {
         val steps = toml.getTables("step")
 
         steps.forEach { step ->
-            val type = step.getString("type")
+            val type = step.getString("stepType")
             val desc = step.getString("description")
 
             val actualStep = when (type) {
@@ -33,13 +33,14 @@ class StepParser {
 
     private fun createJiraStep(desc: String, type: String, input: Toml): JiraStep {
         val project = input.getString("project")
+        val issueType = input.getString("issueType")
         val fields = input.getTables("field")
 
         val parameters = fields.map { field ->
             Pair<String, String>(field.getString("fieldId"), field.getString("content"))
         }
 
-        return JiraStep(desc, type, project, parameters)
+        return JiraStep(desc, type, project, issueType, parameters)
     }
 
     private fun createMailStep(desc: String, type: String, input: Toml): MailStep {

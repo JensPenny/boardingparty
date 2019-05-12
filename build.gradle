@@ -12,6 +12,7 @@ repositories {
 dependencies {
     compile("com.moandjiezana.toml:toml4j:0.7.2")                    //read TOML config files
     compile group: 'net.sargue', name: 'mailgun', version: '1.9.0'   //use the mailgun service as a mailer plugin
+    compile 'net.rcarz:jira-client:0.5'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
